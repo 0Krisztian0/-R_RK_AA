@@ -1,0 +1,847 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Alapértelmezett VILÁGOS MÓD (Halványkék, tengerészkék, fehér) */
+:root {
+    --bg-main: #f4f7fc;
+    --bg-secondary: #e3eaf6;
+    --card-bg: #ffffff;
+    --text-main: #1d2a44;
+    --text-muted: #56627d;
+    --accent: #2f5fd0;
+    --accent-hover: #2349a8;
+    --header-bg: #16213d;
+    --header-text: #eaf0ff;
+    --border-color: #cfd9ee;
+    --table-header: #2349a8;
+}
+
+/* SÖTÉT MÓD osztály */
+body.dark-mode {
+    --bg-main: #070b18;
+    --bg-secondary: #0f1630;
+    --card-bg: #121a38;
+    --text-main: #e8eeff;
+    --text-muted: #a9b6d8;
+    --accent: #7fb0ff;
+    --accent-hover: #a9c9ff;
+    --header-bg: #04060f;
+    --header-text: #e8eeff;
+    --border-color: #243059;
+    --table-header: #1b2a5c;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Felső sáv */
+.top-bar {
+    background-color: #0d1428;
+    color: #c9d5f2;
+    padding: 8px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+#theme-toggle {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#theme-toggle:hover {
+    background: var(--accent-hover);
+}
+
+/* Fejléc & Navigáció */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--header-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--header-text);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: var(--header-text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* Banner Hero Szekció */
+.hero-banner {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 120%, #1c2e6b 0%, #0a1030 55%, #04061a 100%);
+}
+
+/* Villogó csillagok a háttérben (a script hozza létre őket) */
+.hatter-csillagok {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hatter-csillagok i {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.2;
+    animation: villog 4s ease-in-out infinite;
+}
+
+@keyframes villog {
+    50% {
+        opacity: 1;
+        transform: scale(1.6);
+    }
+}
+
+/* Forgó pályák a hero mögött */
+.hero-palya {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(160, 190, 255, 0.22);
+    border-radius: 50%;
+    z-index: 1;
+    animation: forog 30s linear infinite;
+}
+
+.hero-palya span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    border-radius: 50%;
+    background: var(--szin);
+    box-shadow: 0 0 14px var(--szin);
+}
+
+@keyframes forog {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Szöveg és tartalom a háttér fölé helyezése */
+.hero-overlay {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 80px 20px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.hero-tartalom h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero-tartalom p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.gomb-csoport {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gomb {
+    display: inline-block;
+    background-color: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 12px 26px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+    border: 2px solid var(--accent);
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.gomb:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.gomb-korvonal {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.gomb-korvonal:hover {
+    background-color: white;
+    color: #333;
+}
+
+/* Statisztika Szekció */
+.statok {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--bg-secondary);
+    padding: 30px 5%;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stat-elem {
+    text-align: center;
+}
+
+.stat-elem h3 {
+    font-size: 32px;
+    color: var(--accent);
+    margin: 0;
+}
+
+.stat-elem p {
+    margin: 5px 0 0 0;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+/* Általános Szekció Stílusok */
+.szekcio {
+    padding: 60px 8%;
+}
+
+.kiemelt-hatter {
+    background-color: var(--bg-secondary);
+}
+
+.szekcio-fejlec {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.szekcio-fejlec h2 {
+    font-size: 32px;
+    color: var(--accent);
+    margin: 0;
+}
+
+.szekcio-fejlec .alcim {
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+/* Naprendszer Grid & Idézet */
+.bemutatkozas-grid {
+    display: flex;
+    gap: 30px;
+}
+
+.bemutatkozas-kartya {
+    flex: 1;
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.bemutatkozas-kartya h3 {
+    color: var(--accent);
+    margin-top: 0;
+}
+
+blockquote {
+    text-align: center;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--accent);
+    margin: 40px auto 0 auto;
+    max-width: 600px;
+    padding: 15px;
+    border-left: 3px solid var(--accent);
+    background-color: var(--card-bg);
+}
+
+/* Bolygókártyák Grid */
+.kinalat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.bolygo-kartya {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.bolygo-kartya:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.bolygo-kartya:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* A bolygó háttere mindig sötét, mint az űr */
+.bolygo-kep {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 50%, #17224d 0%, #070b1f 75%);
+}
+
+.bolygo-kartya .bolygo {
+    transition: transform 0.5s;
+}
+
+.bolygo-kartya:hover .bolygo {
+    transform: scale(1.14);
+}
+
+.bolygo-szoveg {
+    padding: 20px;
+}
+
+.kartya-fejlec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.kartya-fejlec h3 {
+    margin: 0;
+    color: var(--text-main);
+}
+
+.kartya-fejlec .ar {
+    font-weight: bold;
+    font-size: 13px;
+    color: var(--accent);
+}
+
+.nagyit-jel {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+/* Bolygók (CSS-sel rajzolva, forgó felszínnel) */
+.bolygo {
+    --s: 120px;
+    position: relative;
+    width: var(--s);
+    height: var(--s);
+    flex: none;
+}
+
+.bolygo-test {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0 calc(var(--s) * 0.28) var(--ragyogas, rgba(120, 160, 255, 0.3));
+}
+
+.bolygo-test::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--felszin);
+    background-size: calc(var(--s) * 2) 100%;
+    background-repeat: repeat-x;
+    animation: forgas var(--sebesseg, 60s) linear infinite;
+}
+
+/* Árnyékolás, hogy gömbnek látsszon */
+.bolygo-test::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.2), transparent 34%),
+        radial-gradient(circle at 35% 33%, transparent 38%, rgba(2, 3, 16, 0.55) 72%, rgba(2, 3, 12, 0.93) 100%);
+}
+
+@keyframes forgas {
+    to {
+        background-position-x: calc(var(--s) * -2);
+    }
+}
+
+/* Szaturnusz gyűrűi */
+.gyuru {
+    position: absolute;
+    left: -48%;
+    width: 196%;
+    top: 25%;
+    height: 50%;
+    border-radius: 50%;
+    border: calc(var(--s) * 0.08) solid rgba(226, 208, 160, 0.8);
+    box-shadow: inset 0 0 0 calc(var(--s) * 0.035) rgba(150, 130, 90, 0.55);
+    transform: rotate(-16deg);
+}
+
+.gyuru-hatul {
+    z-index: 0;
+}
+
+.gyuru-elol {
+    z-index: 2;
+    clip-path: inset(50% 0 0 0);
+}
+
+/* Felszínek */
+.b-merkur {
+    --ragyogas: rgba(170, 160, 150, 0.25);
+    --sebesseg: 90s;
+    --felszin:
+        radial-gradient(ellipse 7% 12% at 20% 35%, rgba(50, 46, 42, 0.55), transparent),
+        radial-gradient(ellipse 9% 14% at 40% 62%, rgba(50, 46, 42, 0.5), transparent),
+        radial-gradient(ellipse 6% 9% at 62% 30%, rgba(60, 55, 50, 0.55), transparent),
+        radial-gradient(ellipse 10% 15% at 80% 58%, rgba(50, 46, 42, 0.5), transparent),
+        linear-gradient(180deg, #8f8a82, #a29d95 50%, #7f7a73);
+}
+
+.b-venusz {
+    --ragyogas: rgba(240, 200, 120, 0.35);
+    --sebesseg: 120s;
+    --felszin:
+        radial-gradient(ellipse 20% 8% at 30% 38%, rgba(255, 240, 200, 0.45), transparent),
+        radial-gradient(ellipse 22% 8% at 70% 62%, rgba(190, 140, 70, 0.4), transparent),
+        linear-gradient(180deg, #d9b873 0, #ecd49a 20%, #c99f57 40%, #e8cc90 60%, #d0a864 80%, #e6c887 100%);
+}
+
+.b-fold {
+    --ragyogas: rgba(90, 160, 255, 0.45);
+    --sebesseg: 50s;
+    --felszin:
+        radial-gradient(ellipse 12% 7% at 45% 24%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(ellipse 14% 6% at 72% 72%, rgba(255, 255, 255, 0.55), transparent),
+        radial-gradient(ellipse 12% 6% at 20% 70%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(ellipse 14% 18% at 18% 42%, #4b9a52 0, #3b8346 55%, transparent 100%),
+        radial-gradient(ellipse 8% 22% at 33% 62%, #4b9a52 0, transparent 100%),
+        radial-gradient(ellipse 15% 14% at 62% 38%, #6a9a4a 0, #8a8a52 60%, transparent 100%),
+        radial-gradient(ellipse 7% 18% at 82% 56%, #4b9a52 0, transparent 100%),
+        linear-gradient(180deg, #eef3f8 0, #eef3f8 7%, transparent 14%, transparent 86%, #eef3f8 93%, #eef3f8 100%),
+        linear-gradient(180deg, #14508f, #1f6db3 50%, #14508f);
+}
+
+.b-mars {
+    --ragyogas: rgba(230, 110, 70, 0.35);
+    --sebesseg: 70s;
+    --felszin:
+        radial-gradient(ellipse 18% 13% at 30% 46%, rgba(70, 28, 18, 0.55), transparent),
+        radial-gradient(ellipse 14% 10% at 66% 36%, rgba(80, 32, 20, 0.5), transparent),
+        radial-gradient(ellipse 16% 12% at 74% 66%, rgba(70, 28, 18, 0.45), transparent),
+        linear-gradient(180deg, #f3ece8 0, #f3ece8 6%, transparent 12%, transparent 90%, #f3ece8 96%),
+        linear-gradient(180deg, #a8482a, #c9683c 50%, #a8482a);
+}
+
+.b-jupiter {
+    --ragyogas: rgba(230, 190, 140, 0.35);
+    --sebesseg: 28s;
+    --felszin:
+        radial-gradient(ellipse 9% 7% at 62% 66%, #b8512f 0, #c9683c 60%, transparent 100%),
+        linear-gradient(180deg, #b28b66 0, #e8d3b0 8%, #a4714a 16%, #e2c9a4 26%, #c28e62 36%, #efe0c4 46%, #9f6c48 54%, #dcc09a 64%, #b8825a 74%, #ead7b6 84%, #a77751 92%, #c9a07a 100%);
+}
+
+.b-szaturnusz {
+    --ragyogas: rgba(240, 215, 150, 0.3);
+    --sebesseg: 34s;
+    --felszin:
+        linear-gradient(180deg, #c8a96a 0, #ead7a0 12%, #d5b97c 24%, #f1e2b4 38%, #caa968 52%, #e6d29a 66%, #d2b377 80%, #eddca8 92%, #c8a96a 100%);
+}
+
+.b-uranusz {
+    --ragyogas: rgba(140, 230, 236, 0.4);
+    --sebesseg: 55s;
+    --felszin:
+        linear-gradient(180deg, #8fd9e0 0, #b5eef2 30%, #9fe2e8 50%, #b5eef2 70%, #8fd9e0 100%);
+}
+
+.b-neptunusz {
+    --ragyogas: rgba(80, 120, 255, 0.45);
+    --sebesseg: 40s;
+    --felszin:
+        radial-gradient(ellipse 12% 8% at 40% 42%, rgba(12, 22, 90, 0.75), transparent),
+        radial-gradient(ellipse 14% 5% at 70% 30%, rgba(255, 255, 255, 0.35), transparent),
+        linear-gradient(180deg, #2f4fc2 0, #4a72e6 25%, #2f4fc2 45%, #3a5ad4 70%, #2a46b0 100%);
+}
+
+/* Táblázat */
+.tabla-doboz {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--table-header);
+    color: white;
+}
+
+tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Rekordok Grid */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.rekord-kartya {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.rekord-kartya:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.rekord-kartya h3 {
+    margin: 0 0 6px 0;
+    font-size: 28px;
+    color: var(--accent);
+}
+
+.rekord-kartya p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+/* Keringési idők doboz */
+.nyitvatartas-doboz {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.idopont-sor {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.idopont-sor:last-child {
+    border-bottom: none;
+}
+
+.idopont-sor strong {
+    color: var(--accent);
+    text-align: right;
+}
+
+/* Kapcsolat Grid */
+.kapcsolat-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    text-align: center;
+}
+
+.kapcsolat-info {
+    flex: 1;
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.kapcsolat-info a:not(.gomb) {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* Nagyított nézet (felugró ablak) */
+.nagyitas-hatter {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(2, 4, 14, 0.82);
+    animation: eloszlik 0.25s both;
+}
+
+.nagyitas-hatter[hidden] {
+    display: none;
+}
+
+.nagyitas-doboz {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 880px;
+    max-height: 100%;
+    overflow: auto;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    animation: kinagyul 0.4s both;
+}
+
+@keyframes eloszlik {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes kinagyul {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+.nagyitas-bal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: radial-gradient(circle at 50% 50%, #17224d 0%, #070b1f 75%);
+}
+
+.nagyitas-kep {
+    flex: 1;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.nagyitas-kep .bolygo {
+    --s: 190px;
+    transform: scale(var(--z, 1));
+    transition: transform 0.25s;
+}
+
+.nagyitas-csuszka {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #d6e0ff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nagyitas-csuszka input {
+    flex: 1;
+    min-width: 0;
+    accent-color: #7fb0ff;
+}
+
+.nagyitas-jobb {
+    flex: 1;
+    min-width: 0;
+    padding: 30px 28px 24px 28px;
+}
+
+.nagyitas-jobb .cimke {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.nagyitas-jobb h3 {
+    margin: 4px 0 12px 0;
+    font-size: 34px;
+}
+
+.nagyitas-jobb p {
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.nagyitas-gombok {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.nagyitas-gombok .gomb {
+    padding: 9px 16px;
+    font-size: 14px;
+}
+
+.bezar-gomb {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.bezar-gomb:hover {
+    background: var(--accent-hover);
+}
+
+/* Lábléc */
+footer {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* Kevesebb mozgás kérése esetén nincs animáció */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Reszponzív beállítások Mobilra */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hero-banner {
+        padding: 60px 15px;
+    }
+
+    .hero-tartalom h2 {
+        font-size: 28px;
+    }
+
+    .gomb-csoport {
+        flex-direction: column;
+    }
+
+    .statok {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .bemutatkozas-grid, .kapcsolat-grid {
+        flex-direction: column;
+    }
+
+    .nagyitas-doboz {
+        flex-direction: column;
+    }
+
+    .nagyitas-kep {
+        min-height: 240px;
+    }
+
+    .nagyitas-kep .bolygo {
+        --s: 130px;
+    }
+}
